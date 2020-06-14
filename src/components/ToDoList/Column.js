@@ -7,8 +7,9 @@ const Column = props => {
         <h5>{props.title}</h5>
 
         <div className="row container d-flex justify-content-center">
-          <Card />
-          <Card />
+          {props.list.map((todo, index) => (
+            <Card key={index} item={todo} />
+          ))}
         </div>
     </div>
   )

@@ -1,6 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
-const NewCard = props => {
+const mapStateToProps = state => ({
+  users: state.users
+})
+
+export default connect(mapStateToProps)(({users}) => {
   return (
     <div className="row">
       <div className="col">
@@ -18,9 +23,11 @@ const NewCard = props => {
 
             <div className="form-group">
               <label>Asignar a:</label>
-              <select className="form-control">
-                <option disabled>Selecciona alguien</option>
-                <option value="2">Roberto</option>
+              <select className="form-control" defaultValue="">
+                <option disabled value="">Selecciona alguien</option>
+                {users.map((user, index) => (
+                  <option key={index} value={user.id}>{user.name}</option>
+                ))}
               </select>
             </div>
 
@@ -32,7 +39,4 @@ const NewCard = props => {
       </div>
     </div>
   )
-}
-
-export default NewCard;
-
+})

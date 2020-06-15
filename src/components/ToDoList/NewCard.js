@@ -38,7 +38,7 @@ export default connect(mapStateToProps)(({users, loggedUser, dispatch}) => {
     }
   }
 
-  const sameGroupUsers = (groupName = loggedUser[0].group) => {
+  const sameGroupUsers = (groupName = ((typeof loggedUser[0] !== 'undefined') ? loggedUser[0].group : '')) => {
     return users.filter(x => x.group === groupName)
   }
 

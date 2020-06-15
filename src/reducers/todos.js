@@ -5,18 +5,7 @@ import {
   COMPLETE_TODO
 } from '../constants/ActionTypes'
 
-const initialState = [
-  {
-    id: 0,
-    completed: false,
-    text: 'Use Redux',
-    assignedTo: 'Roberto',
-    group: 'IT',
-    createdAt: '2020-06-14 18:52:02'
-  }
-]
-
-export default function todos(state = initialState, action) {
+export default function todos(state = [], action) {
 
   let payload = action.payload
 

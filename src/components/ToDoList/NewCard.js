@@ -23,19 +23,17 @@ export default connect(mapStateToProps)(({users, loggedUser, dispatch}) => {
     e.preventDefault()
 
     let target = e.target
-
     let userInfo = getUserById(target.assign.value)
 
-    if (userInfo) {
-      dispatch(addTodo({
-        completed: target.completed.checked,
-        text: target.text.value,
-        assignedTo: userInfo.name,
-        group: userInfo.group      
-      }))
+    dispatch(addTodo({
+      completed: target.completed.checked,
+      text: target.text.value,
+      assignedTo: (userInfo) ? userInfo.name : '',
+      group: loggedUser[0].group
+    }))
 
-      e.target.reset()
-    }
+    target.reset()
+    target.text.focus()
   }
 
   const sameGroupUsers = (groupName = ((typeof loggedUser[0] !== 'undefined') ? loggedUser[0].group : '')) => {
@@ -54,7 +52,7 @@ export default connect(mapStateToProps)(({users, loggedUser, dispatch}) => {
             </div>
 
             <div className="form-group">
-              <textarea name="text" className="form-control" rows="3"></textarea>
+              <input name="text" className="form-control" autoFocus required />
             </div>
 
             <div className="form-group">

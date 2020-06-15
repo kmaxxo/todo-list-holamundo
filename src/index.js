@@ -10,14 +10,16 @@ import App from './App';
 import Login from './components/Login'
 
 const store = createStore(reducer)
-const loggedIn = true
 
 const routing = (
   <Provider store={store}>
     <Router>
       <div className="container">
         <Route exact path="/">
-          {loggedIn ? <App /> : <Login />}
+          <App />
+        </Route>
+        <Route exact path="/login">
+          <Login />
         </Route>
       </div>
     </Router>

@@ -12,8 +12,23 @@ const initialState = [
   },
   {
     id: 2,
-    name: 'Márquez',
+    name: 'Anabel',
     group: 'IT'
+  },
+  {
+    id: 3,
+    name: 'Marta',
+    group: 'Producto'
+  },
+  {
+    id: 4,
+    name: 'Nico',
+    group: 'Producto'
+  },
+  {
+    id: 5,
+    name: 'Rosa',
+    group: 'Producto'
   }
 ]
 

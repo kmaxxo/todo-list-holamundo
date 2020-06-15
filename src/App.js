@@ -21,11 +21,9 @@ export default connect(mapStateToProps)(({loggedUser}) => {
     return loggedUser[0]
   }
 
-  const user = isLoggedUser()
-
   return (
     <>
-      <NavHeader user={user} />
+      <NavHeader user={isLoggedUser()} />
       <ToDoList />
       <Footer />
     </>

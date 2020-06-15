@@ -16,7 +16,7 @@ export default function todos(state = [], action) {
       return [
         ...state,
         {
-          id: Math.floor(Date.now() / 1000),
+          id: Date.now(),
           completed: action.payload.completed,
           text: action.payload.text,
           assignedTo: action.payload.assignedTo,

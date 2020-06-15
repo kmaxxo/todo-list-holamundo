@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 import { addTodo } from '../../actions/todos'
 
 const mapStateToProps = state => ({
-  users: state.users
+  users: state.users,
+  loggedUser: state.loggedUser
 })
 
-export default connect(mapStateToProps)(({users, dispatch}) => {
+export default connect(mapStateToProps)(({users, loggedUser, dispatch}) => {
 
   const getUserById = userId => {
     let result = users.filter(x => x.id === parseInt(userId))
@@ -37,6 +38,10 @@ export default connect(mapStateToProps)(({users, dispatch}) => {
     }
   }
 
+  const sameGroupUsers = (groupName = loggedUser[0].group) => {
+    return users.filter(x => x.group === groupName)
+  }
+
   return (
     <div className="row">
       <div className="col">
@@ -56,7 +61,7 @@ export default connect(mapStateToProps)(({users, dispatch}) => {
               <label>Asignar a:</label>
               <select className="form-control" defaultValue="" name="assign">
                 <option disabled value="">Selecciona alguien</option>
-                {users.map((user, index) => (
+                {sameGroupUsers().map((user, index) => (
                   <option key={index} value={user.id}>{user.name}</option>
                 ))}
               </select>

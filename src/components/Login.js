@@ -21,23 +21,23 @@ export default connect(mapStateToProps)(({users, dispatch}) => {
     return null
   }
 
-  const loginAction = (e) => {
-    e.preventDefault()
-
-    let target = e.target
-
-    let userInfo = getUserByName(target.username.value)
+  const loginAction = (userName) => {
+    let userInfo = getUserByName(userName)
 
     if (userInfo) {
       dispatch(signIn(userInfo))
       history.push('/')
     }
+  }
 
+  const submitLoginForm = (e) => {
+    e.preventDefault()
+    loginAction(e.target.username.value)
   }
 
   return (
     <>
-      <form className="form-signin mt-5" onSubmit={loginAction}>
+      <form className="form-signin mt-5" onSubmit={submitLoginForm}>
         <label className="sr-only">Usuario</label>
         <input type="text" name="username" className="form-control" placeholder="Usuario" required autoFocus />
         <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
@@ -46,7 +46,11 @@ export default connect(mapStateToProps)(({users, dispatch}) => {
         <p>Listado de usuarios disponibles</p>
         <ul>
           {users.map((user, index) => (
-            <li key={index}><b>{user.name}</b> ({user.group})</li>
+            <li key={index}>
+              <button onClick={() => { loginAction(user.name) }} className="mr-2">Entrar</button>
+              <b className="mr-2">{user.name}</b>
+              <small>({user.group})</small>
+            </li>
           ))}
         </ul>
       </div>

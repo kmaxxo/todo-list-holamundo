@@ -1,6 +1,9 @@
 import React from 'react';
 
 const Card = props => {
+
+  let assignedToText = (props.item.assignedTo) ? 'Asignado a ' + props.item.assignedTo : 'Sin asignar'
+
   return (
     <div className="card view p-2 mb-3">
       <div className="card-body">
@@ -9,7 +12,7 @@ const Card = props => {
           <small className="text-muted">{props.item.createdAt}</small>
         </p>
         <footer className="blockquote-footer">
-          <small className="text-muted">Asignado a {props.item.assignedTo}</small>
+          <small className="text-muted">{assignedToText}</small>
         </footer>
       </div>
     </div>

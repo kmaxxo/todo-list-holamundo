@@ -7,8 +7,6 @@ import {
 
 export default function todos(state = [], action) {
 
-  let payload = action.payload
-
   switch (action.type) {
     case ADD_TODO:
       let today = new Date()
@@ -19,29 +17,29 @@ export default function todos(state = [], action) {
         ...state,
         {
           id: Math.floor(Date.now() / 1000),
-          completed: payload.completed,
-          text: payload.text,
-          assignedTo: payload.assignedTo,
-          group: payload.group,
+          completed: action.payload.completed,
+          text: action.payload.text,
+          assignedTo: action.payload.assignedTo,
+          group: action.payload.group,
           createdAt: date+' '+time    
         }
       ]
 
     case DELETE_TODO:
       return state.filter(todo =>
-        todo.id !== payload.id
+        todo.id !== action.payload
       )
 
     case EDIT_TODO:
       return state.map(todo =>
-        todo.id === payload.id ?
-          { ...todo, text: payload.text } :
+        todo.id === action.payload.id ?
+          { ...todo, text: action.payload.text } :
           todo
       )
 
     case COMPLETE_TODO:
       return state.map(todo =>
-        todo.id === payload.id ?
+        todo.id === action.payload.id ?
           { ...todo, completed: !todo.completed } :
           todo
       )

@@ -33,7 +33,12 @@ export default function todos(state = [], action) {
     case EDIT_TODO:
       return state.map(todo =>
         todo.id === action.payload.id ?
-          { ...todo, text: action.payload.text } :
+          { ...todo, 
+            completed: action.payload.completed,
+            text: action.payload.text,
+            assignedTo: action.payload.assignedTo,
+            group: action.payload.group,
+          } :
           todo
       )
 

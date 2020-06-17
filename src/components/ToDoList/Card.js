@@ -11,8 +11,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 class Card extends React.Component {
 
-  assignedToText = (this.props.item.assignedTo) ? 'Asignado a ' + this.props.item.assignedTo : 'Sin asignar'
-
   constructor(props) {
     super(props)
     this.state = {showEditTodo: false};
@@ -35,7 +33,7 @@ class Card extends React.Component {
             <small className="text-muted">{this.props.item.createdAt}</small>
           </p>
           <footer className="blockquote-footer">
-            <small className="text-muted">{this.assignedToText}</small>
+            <small className="text-muted">{this.props.item.assignedTo ? 'Asignado a ' + this.props.item.assignedTo : 'Sin asignar'}</small>
           </footer>
 
           <footer>

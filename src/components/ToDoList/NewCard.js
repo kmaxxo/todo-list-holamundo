@@ -8,23 +8,32 @@ const mapStateToProps = (state, ownProps) => ({
   props: ownProps
 })
 
-
-
-
-
-
-
-
 class NewCard extends React.Component {
 
   constructor(props) {
     super(props)
- 
+
+    this.state = {
+      text: this.props.itemData ? this.props.itemData.text : '',
+      completed: this.props.itemData && this.props.itemData.completed ? true : false,
+      assignedTo: this.props.itemData ? this.props.itemData.assignedTo : ''
+    }
+
     this.newTodo = this.newTodo.bind(this);
     this.editTodo = this.editTodo.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
   
+  resetForm(target) {
+    this.setState({
+      text: '',
+      completed: false,
+      assignedTo: ''
+    })
+
+    target.text.focus()
+  }
+
   newTodo (e) {
 
     e.preventDefault()
@@ -34,12 +43,11 @@ class NewCard extends React.Component {
     this.props.dispatch(addTodo({
       completed: target.completed.checked,
       text: target.text.value,
-      assignedTo: target.assign.value,
+      assignedTo: target.assignedTo.value,
       group: this.props.loggedUser[0].group
     }))
 
-    target.reset()
-    target.text.focus()
+    this.resetForm(target)
   }
 
   editTodo (e) {
@@ -52,16 +60,18 @@ class NewCard extends React.Component {
       id: this.props.itemData.id,
       completed: target.completed.checked,
       text: target.text.value,
-      assignedTo: target.assign.value,
+      assignedTo: target.assignedTo.value,
       group: this.props.loggedUser[0].group
     }))
-
-    target.reset()
-    target.text.focus()
   }
 
   handleChange (e) {
-    this.setState({ [e.target.name]: e.target.value })
+    let target = e.target
+    
+    let value = target.name === 'completed' ? target.checked : target.value
+    let name = target.name
+
+    this.setState({[name]: value})
   }
 
   sameGroupUsers (groupName = ((typeof this.props.loggedUser[0] !== 'undefined') ? this.props.loggedUser[0].group : '')) {
@@ -77,16 +87,16 @@ class NewCard extends React.Component {
             <form onSubmit={! this.props.itemData ? this.newTodo : this.editTodo}>
   
               <div className="form-group text-right">
-                <label>Completo <input name="completed" type="checkbox" /></label>
+                <label>Completo <input name="completed" type="checkbox" onChange={this.handleChange} checked={this.state.completed} /></label>
               </div>
   
               <div className="form-group">
-                <input name="text" className="form-control" autoFocus required onChange={this.handleChange} value={this.props.itemData && this.props.itemData.text} />
+                <input name="text" className="form-control" autoFocus required onChange={this.handleChange} value={this.state.text} />
               </div>
   
               <div className="form-group">
                 <label>Asignar a:</label>
-                <select className="form-control" defaultValue="" name="assign">
+                <select className="form-control" name="assignedTo" onChange={this.handleChange} value={this.state.assignedTo}>
                   <option disabled value="">Selecciona alguien</option>
                   {this.sameGroupUsers().map((user, index) => (
                     <option key={index} value={user.name}>{user.name}</option>

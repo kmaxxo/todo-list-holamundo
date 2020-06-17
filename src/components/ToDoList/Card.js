@@ -50,8 +50,12 @@ class Card extends React.Component {
         
         <Modal
           show={this.state.showEditTodo}
+          onHide={this.handleChildUnmount}
           backdrop="static"
         >
+          <Modal.Header closeButton>
+            <Modal.Title>Editar Card</Modal.Title>
+          </Modal.Header>
           <Modal.Body>
             <NewCard modalClass="modal" unmountMe={this.handleChildUnmount} itemData={this.props.item} />
           </Modal.Body>

@@ -23,7 +23,11 @@ class NewCard extends React.Component {
     this.editTodo = this.editTodo.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  
+
+  dismiss() {
+    this.props.unmountMe()
+  }
+
   resetForm(target) {
     this.setState({
       text: '',
@@ -63,6 +67,8 @@ class NewCard extends React.Component {
       assignedTo: target.assignedTo.value,
       group: this.props.loggedUser[0].group
     }))
+
+    this.dismiss()
   }
 
   handleChange (e) {

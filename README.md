@@ -29,3 +29,8 @@ Pulsando en el botón EDITAR de la tarjeta se puede acceder al modal con el form
 
 #### Borrar
 Para borrar puedes pulsar en el botón BORRAR que se encuentra en cada tarjeta
+
+## Descripción
+Está realizado con Redux como fuente de datos y para la persistencia para probar el ejercicio he usado Local Storage. Se puede probar dentro de la sesión del navegador interactuando con diferentes usuarios.
+
+Se ha distribuido los compoenentes de la manera más atómica posible buscando el equilibrio entre reutilización y repetición de código.

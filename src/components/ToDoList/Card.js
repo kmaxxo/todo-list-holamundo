@@ -9,7 +9,6 @@ const mapStateToProps = (state, ownProps) => ({
   props: ownProps
 })
 
-
 class Card extends React.Component {
 
   constructor(props) {

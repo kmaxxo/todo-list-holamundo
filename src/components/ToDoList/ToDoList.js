@@ -5,8 +5,8 @@ import NewCard from './NewCard'
 import Column from './Column'
 
 const mapStateToProps = state => ({
-  todos: state.todos.filter(t => !t.completed),
-  completed: state.todos.filter(t => t.completed)
+  todos: state.todos.filter(t => (!t.completed && t.group === state.loggedUser[0].group)),
+  completed: state.todos.filter(t => t.completed && t.group === state.loggedUser[0].group)
 })
 
 export default connect(mapStateToProps)(({todos, completed}) => {

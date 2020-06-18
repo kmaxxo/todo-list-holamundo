@@ -1,25 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
-const NavHeader = props => {
-
-  let groupName = ''
-  let userName = ''
-
-  if (typeof props.user !== 'undefined') {
-    groupName = props.user.group
-    userName = props.user.name
+class NavHeader extends React.Component {
+  render() {
+    return (
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            Grupo <b>{this.props.user && this.props.user.group}</b>
+          </div>
+          <ul class="nav navbar-nav">
+            <li>Bienvenido, {this.props.user && this.props.user.name}</li>
+            <li><Link to='/login'>Logout</Link></li>
+          </ul>
+        </div>
+      </nav>
+    )
   }
-
-  return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div>
-        <span className="navbar-brand float-left">Grupo {groupName}</span>
-        <span className="navbar-text float-right">
-        Bienvenido, {userName}
-        </span>
-      </div>
-    </nav>
-  )
 }
-  
+
+
 export default NavHeader;

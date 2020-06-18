@@ -9,7 +9,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import Login from './components/Login'
 
-const store = createStore(reducer)
+const keyLocalStorage = 'reduxStateCamachoV2'
+
+const persistedState = localStorage.getItem(keyLocalStorage) 
+  ? JSON.parse(localStorage.getItem(keyLocalStorage))
+  : {}
+
+  const store = createStore(reducer, persistedState)
+
+store.subscribe(() => {
+  console.info(store.getState())
+  localStorage.setItem(keyLocalStorage, JSON.stringify(store.getState()))
+})
 
 const routing = (
   <Provider store={store}>

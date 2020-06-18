@@ -12,7 +12,7 @@ export default connect(mapStateToProps)(({users, dispatch}) => {
   const history = useHistory()
 
   const getUserByName = (userName) => {
-    let result = users.filter(x => x.name === userName)
+    let result = users.filter(x => x.name.toLowerCase() === userName.toLowerCase())
   
     if (result.length > 0) {
       return result[0]

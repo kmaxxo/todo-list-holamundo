@@ -18,7 +18,6 @@ const persistedState = localStorage.getItem(keyLocalStorage)
   const store = createStore(reducer, persistedState)
 
 store.subscribe(() => {
-  console.info(store.getState())
   localStorage.setItem(keyLocalStorage, JSON.stringify(store.getState()))
 })
 

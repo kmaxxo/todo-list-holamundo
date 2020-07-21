@@ -3,6 +3,11 @@
 ## Premisa
 Crear una APP donde se pueda logar por usuario distribuidos por grupos. Entre las funcionalidades de cada usuario, está la de poder hacer un CRUD de tareas y que sea visible en el ámbito de su grupo de asignación.
 
+## Descripción
+Está realizado con Redux como fuente de datos y para la persistencia para probar el ejercicio he usado Local Storage. Se puede probar dentro de la sesión del navegador interactuando con diferentes usuarios.
+
+Se ha distribuido los compoenentes de la manera más atómica posible buscando el equilibrio entre reutilización y repetición de código.
+
 ## Instalación y ejecución
 ```
 $ cd todo-list-holamundo
